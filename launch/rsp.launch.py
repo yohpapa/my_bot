@@ -22,7 +22,8 @@ def generate_launch_description():
     xacro_file = os.path.join(pkg_path,'description','robot.urdf.xacro')
     robot_description_config = Command(
                                 ['xacro ', xacro_file,
-                                ' use_ros2_control:=', use_ros2_control])
+                                ' use_ros2_control:=', use_ros2_control,
+                                ' sim_mode:=', use_sim_time])
     
     # Create a robot_state_publisher node
     params = {
@@ -35,7 +36,6 @@ def generate_launch_description():
         output='screen',
         parameters=[params]
     )
-
 
     # Launch!
     return LaunchDescription([
